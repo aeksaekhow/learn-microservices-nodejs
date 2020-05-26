@@ -57,9 +57,9 @@ app.post('/events', ((req, res) => {
 
 const port = 5002
 app.listen(port, async () => {
-    console.log('Query starts listening on port ' + port)
+    console.log('Query version 0.0.2 starts listening on port ' + port)
 
-    const response = await axios.get(`http://localhost:5005/events`)
+    const response = await axios.get(`http://event-bus-clusterip-service:5005/events`)
 
     for (const event of response.data) {
         handleEvent(event.type, event.data)

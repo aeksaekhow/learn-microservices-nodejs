@@ -12,7 +12,7 @@ const PostList = () => {
     }, [])
 
     const fetchPosts = async () => {
-        const response = await axios.get('http://localhost:5002/posts')
+        const response = await axios.get('http://posts.com/posts')
         setPosts(response.data)
     }
 

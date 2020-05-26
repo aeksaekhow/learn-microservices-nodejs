@@ -11,7 +11,7 @@ const CommentCreate: React.FC<Props> = (props) => {
     const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
 
-        await axios.post(`http://localhost:5001/posts/${props.postId}/comments`, {content})
+        await axios.post(`http://posts.com/posts/${props.postId}/comments`, {content})
 
         setContent('')
     }

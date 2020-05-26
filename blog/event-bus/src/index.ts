@@ -18,14 +18,14 @@ app.post('/events', ((req, res) => {
 
     events.push(event)
 
-    axios.post(`http://localhost:5000/events`, event)
-    axios.post(`http://localhost:5001/events`, event)
-    axios.post(`http://localhost:5002/events`, event)
-    axios.post(`http://localhost:5003/events`, event)
+    axios.post(`http://posts-clusterip-service:5000/events`, event)
+    axios.post(`http://comments-clusterip-service:5001/events`, event)
+    axios.post(`http://query-clusterip-service:5002/events`, event)
+    axios.post(`http://moderation-clusterip-service:5003/events`, event)
 
     res.status(200).send()
 }))
 
 app.listen(5005, () => {
-    console.log('EventBus start listening on port 5005')
+    console.log('EventBus version 0.0.3 start listening on port 5005')
 })

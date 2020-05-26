@@ -34,7 +34,7 @@ app.post('/posts/:id/comments', async (req, res) => {
     comments.push(comment)
     commentsByPostId[postId] = comments
 
-    await axios.post('http://localhost:5005/events', {
+    await axios.post('http://event-bus-clusterip-service:5005/events', {
         type: 'CommentCreated',
         data: comment
     })
@@ -52,7 +52,7 @@ app.post('/events', (async (req, res) => {
         if (comment) {
             comment.status = data.status
 
-            await axios.post(`http://localhost:5005/events`, {
+            await axios.post(`http://event-bus-clusterip-service:5005/events`, {
                 type: 'CommentUpdated',
                 data: comment
             })
@@ -65,5 +65,5 @@ app.post('/events', (async (req, res) => {
 const port = 5001
 app.listen(port, async () => {
 
-    console.log('Comments starts listening on port ' + port)
+    console.log('Comments version 0.0.2 starts listening on port ' + port)
 })

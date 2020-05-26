@@ -15,7 +15,7 @@ app.post(`/events`, (async (req, res) => {
         if (comment.content && comment.content.toString().includes('orange')) comment.status = 'rejected'
         else comment.status = 'approved'
 
-        await axios.post(`http://localhost:5005/events`, {
+        await axios.post(`http://event-bus-clusterip-service:5005/events`, {
             type: 'CommentModerated',
             data: comment
         })
@@ -26,5 +26,5 @@ app.post(`/events`, (async (req, res) => {
 
 const port = 5003
 app.listen(port, () => {
-    console.log(`Moderation starts listening on port ${port}`)
+    console.log(`Moderation version 0.0.2 starts listening on port ${port}`)
 })
