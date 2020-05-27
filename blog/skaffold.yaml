@@ -1,0 +1,34 @@
+apiVersion: skaffold/v2beta4
+kind: Config
+metadata:
+  name: blog
+build:
+  artifacts:
+  - image: aeksaekhow/client
+    context: client
+  - image: aeksaekhow/comments
+    context: comments
+  - image: aeksaekhow/event-bus
+    context: event-bus
+  - image: aeksaekhow/moderation
+    context: moderation
+  - image: aeksaekhow/posts
+    context: posts
+  - image: aeksaekhow/query
+    context: query
+deploy:
+  kubectl:
+    manifests:
+    - infra/k8s/client.deployment.yml
+    - infra/k8s/client.service.yml
+    - infra/k8s/comments.deployment.yml
+    - infra/k8s/comments.service.yml
+    - infra/k8s/event-bus.deployment.yml
+    - infra/k8s/event-bus.service.yml
+    - infra/k8s/moderation.deployment.yml
+    - infra/k8s/moderation.service.yml
+    - infra/k8s/posts.deployment.yml
+    - infra/k8s/posts.service.yml
+    - infra/k8s/query.deploymenet.yml
+    - infra/k8s/query.service.yml
+    - infra/k8s/ingress.service.yml
