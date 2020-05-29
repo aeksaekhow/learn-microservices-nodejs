@@ -1,0 +1,16 @@
+apiVersion: skaffold/v2beta4
+kind: Config
+metadata:
+  name: ticketing
+build:
+  local:
+    push: false
+  artifacts:
+  - image: aeksaekhow/auth
+    context: auth
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - ./infra/k8s/*.yml
