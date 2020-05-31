@@ -31,7 +31,7 @@ signupRouter.post('/api/users/signup', [
             email: user.email
         }, process.env.JWT_KEY!)
 
-        req.session!.jwt = jwtToken
+        if (req.session) req.session.jwt = jwtToken
 
         return res.status(201).send(user)
     }
