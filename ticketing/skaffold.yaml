@@ -1,20 +1,28 @@
 apiVersion: skaffold/v2beta4
 kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*.yml
 metadata:
   name: ticketing
 build:
   local:
     push: false
   artifacts:
-  - image: aeksaekhow/auth
-    context: auth
-    docker:
-      dockerfile: Dockerfile
-    sync:
-      manual:
-        - src: 'dist/'
-          dest: .
-deploy:
-  kubectl:
-    manifests:
-    - ./infra/k8s/*.yml
+    - image: aeksaekhow/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'dist/'
+            dest: .
+    - image: aeksaekhow/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
